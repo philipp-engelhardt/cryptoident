@@ -53,7 +53,7 @@ class Node:
     def broadcast_blockchain(self, blockchain):
         for peer in self.peers:
             try:
-                peer.sendall(blockchain)
+                peer.sendall(pickle.dump(blockchain.chain))
             except:
                 self.peers.remove(peer)
 

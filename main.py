@@ -22,7 +22,7 @@ node2.connect_to_peer('localhost', 5000)
 
 # Broadcast a transaction from node 2
 #transaction = {'from': 'Alice', 'to': 'Bob', 'amount': 10}
-#node2.broadcast_blockchain(blockchain.chain)
+node2.broadcast_blockchain(blockchain.chain)
 
 
 
