@@ -2,6 +2,7 @@ import socket
 import threading
 import json
 import pickle
+import rpyc
 
 
 class Node:
@@ -29,7 +30,7 @@ class Node:
     def client_handler(self, conn):
         while True:
             try:
-                data = conn.recv(1024).decode()
+                data = conn.recv(4096)
                 if not data:
                     break
                 self.handle_message(data)
@@ -53,11 +54,10 @@ class Node:
     def broadcast_blockchain(self, blockchain):
         for peer in self.peers:
             try:
-                peer.sendall(pickle.dump(blockchain.chain))
+                peer.sendall(pickle.dumps(blockchain))
             except:
                 self.peers.remove(peer)
 
     def handle_message(self, message):
-        transaction = json.loads(message)
-        print(f'Received transaction: {transaction}')
-        self.broadcast_blockchain(transaction)
+        chain = pickle.loads(message)
+        print(f'Received blockchain: {chain}')
