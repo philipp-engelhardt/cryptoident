@@ -1,0 +1,62 @@
+/* src/pages/LoginPage.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #111111; /* Dunkel Hintergrund */
+  }
+  
+  .login-box {
+    background-color: #111111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 700px; /* Erhöht, um Platz für ein größeres Logo zu schaffen */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .login-box h2 {
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .login-box form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .login-box input {
+    width: calc(100% - 22px); /* Um Platz für Padding zu schaffen */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Damit Padding berücksichtigt wird */
+  }
+  
+  .login-box button {
+    width: 50%; /* Weniger breit */
+    padding: 10px;
+    margin-top: 20px; /* Mehr Abstand zum unteren Eingabefeld */
+    align-self: center; /* Zentriert den Button */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-box button:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-logo {
+    margin-left: 20px;
+    width: 300px; /* Deutlich größer */
+    height: auto; /* Beibehaltung des Seitenverhältnisses */
+  }
+  

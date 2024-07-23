@@ -1,0 +1,57 @@
+/* src/components/Sidebar.css */
+.dashboard-sidebar {
+    width: 200px;
+    background-color: #111111;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: width 0.3s ease;
+  }
+  
+  .dashboard-sidebar.closed {
+    width: 60px; /* Angepasst, um Platz für Icons zu schaffen */
+  }
+  
+  .dashboard-sidebar .sidebar-toggle {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dashboard-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .dashboard-sidebar li {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #555;
+  }
+  
+  .dashboard-sidebar li:last-child {
+    border-bottom: none;
+  }
+  
+  .dashboard-sidebar a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .dashboard-sidebar a span {
+    margin-left: 10px;
+  }
+  
+  .dashboard-sidebar a:hover {
+    text-decoration: underline;
+  }
+  

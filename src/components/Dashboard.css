@@ -1,0 +1,16 @@
+/* src/components/Dashboard.css */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .dashboard-content {
+    flex-grow: 1;
+    background-color: #151515;
+    color: white;
+  }
+  
+  .dashboard-main {
+    padding: 20px;
+  }
+  
