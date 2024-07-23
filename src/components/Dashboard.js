@@ -10,7 +10,7 @@ const Dashboard = () => {
       <div className="dashboard-content">
         <Header />
         <div className="dashboard-main">
-          <h2>Welcome to the Admin Dashboard</h2>
+          <h2>Welcome to cryptoident</h2>
           {/* Weitere Dashboard-Inhalte wie Tabellen, Diagramme usw. hier hinzufügen */}
         </div>
       </div>

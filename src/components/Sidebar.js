@@ -28,7 +28,7 @@ const Sidebar = () => {
             {isOpen && <span>Users</span>}
           </a>
         </li>
-        <li>
+        <li className="settings">
           <a href="/dashboard/settings">
             <FontAwesomeIcon icon={faCog} />
             {isOpen && <span>Settings</span>}

@@ -3,6 +3,14 @@
     background-color: #111111;
     color: white;
     padding: 10px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Minimal schmaler */
+  }
+  
+  .header-logo {
+    max-height: 45px; /* Größer */
+    width: auto;
   }
   
