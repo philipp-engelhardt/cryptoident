@@ -1,5 +1,7 @@
 import pickle
 import datetime as date
+from pickle import FALSE
+
 from block import Block
 
 
@@ -28,6 +30,10 @@ class Blockchain:
         self.chain.append(new_block)
 
     def is_valid(self):
+        valid_public_keys = set()
+        # add genesis public key
+        valid_public_keys.add(self.chain[0].person_public_key)
+
         for i in range(1, len(self.chain)):
             current_block = self.chain[i]
             previous_block = self.chain[i - 1]
@@ -37,5 +43,13 @@ class Blockchain:
 
             if current_block.previous_hash != previous_block.hash:
                 return False
+
+            if not current_block.verify_signature():
+                return False
+
+            if current_block.validator_public_key not in valid_public_keys:
+                return False
+
+            valid_public_keys.add(current_block.person_public_key)
 
         return True

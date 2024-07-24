@@ -1,6 +1,7 @@
 import datetime as date
 from block import Block
 from blockchain import Blockchain
+from crypto import Crypto
 from node import Node
 
 # Create the blockchain
@@ -10,7 +11,6 @@ blockchain = Blockchain()
 blockchain.add_block(Block(1, date.datetime.now(), "Transaction Data 1", ""))
 blockchain.add_block(Block(2, date.datetime.now(), "Transaction Data 2", ""))
 blockchain.add_block(Block(3, date.datetime.now(), "Transaction Data 3", ""))
-
 
 node1 = Node('localhost', 8776)
 node1.start_server()
