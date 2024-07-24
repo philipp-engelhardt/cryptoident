@@ -36,10 +36,10 @@ class Crypto:
             pickle.dump(self.public_key_pem, file)
 
     def load_key_pair_from_file(self):
-        with open('private.pkl', 'rb') as file:
+        with open('private.key', 'rb') as file:
             self.private_key_pem = pickle.load(file)
 
-        with open('public.pkl', 'rb') as file:
+        with open('public.key', 'rb') as file:
             self.public_key_pem = pickle.load(file)
 
 
