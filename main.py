@@ -12,17 +12,18 @@ blockchain.add_block(Block(2, date.datetime.now(), "Transaction Data 2", ""))
 blockchain.add_block(Block(3, date.datetime.now(), "Transaction Data 3", ""))
 
 
-node1 = Node('localhost', 5000)
+node1 = Node('localhost', 8776)
 node1.start_server()
 
 # Node 2
-node2 = Node('localhost', 5001)
+node2 = Node('localhost', 6778)
 node2.start_server()
-node2.connect_to_peer('localhost', 5000)
+node2.connect_to_peer('localhost', 8776)
+node2.register_all_peers()
 
 # Broadcast a transaction from node 2
 #transaction = {'from': 'Alice', 'to': 'Bob', 'amount': 10}
-node2.broadcast_blockchain(blockchain.chain)
+#node2.broadcast_blockchain(blockchain.chain)
 
 
 
