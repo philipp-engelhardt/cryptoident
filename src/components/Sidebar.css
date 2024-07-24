@@ -19,9 +19,11 @@
     border: none;
     padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
+    border-radius: 10px;
   }
   
   .dashboard-sidebar ul {

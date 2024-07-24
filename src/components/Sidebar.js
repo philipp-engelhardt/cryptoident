@@ -4,7 +4,7 @@ import { faHome, faUsers, faCog, faBars } from '@fortawesome/free-solid-svg-icon
 import './Sidebar.css';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
