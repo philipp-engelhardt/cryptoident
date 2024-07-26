@@ -1,10 +1,12 @@
 import pickle
+
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import serialization
 
 
-class Crypto:
+class Wallet:
     def __init__(self):
         self.public_key_pem = None
         self.private_key_pem = None
@@ -43,7 +45,13 @@ class Crypto:
             self.public_key_pem = pickle.load(file)
 
 
-def sign_message(private_key, message):
+def sign_message(private_key_pem, message):
+    private_key = serialization.load_pem_private_key(
+        private_key_pem,
+        password=None,
+        backend=default_backend()
+    )
+
     return private_key.sign(
         message,
         padding.PSS(
@@ -54,8 +62,11 @@ def sign_message(private_key, message):
     )
 
 
-def verify_signature(public_key, signature, message):
-    public_key = serialization.load_pem_public_key(public_key)
+def verify_signature(public_key_pem, signature, message):
+    public_key = serialization.load_pem_public_key(
+        public_key_pem,
+        backend=default_backend()
+    )
     try:
         public_key.verify(
             signature,

@@ -1,13 +1,11 @@
 import pickle
 import datetime as date
-from pickle import FALSE
-
 from block import Block
 
 
 class Blockchain:
-    def __init__(self):
-        self.chain = [self.create_genesis_block()]
+    def __init__(self, genesis_public_key, genesis_private_key):
+        self.chain = [self.create_genesis_block(genesis_public_key, genesis_private_key)]
 
     def save_to_file(self):
         with open('chain.pkl', 'wb') as file:
@@ -18,14 +16,20 @@ class Blockchain:
             self.chain = pickle.load(file)
 
     @staticmethod
-    def create_genesis_block():
-        return Block(0, date.datetime.now(), "Genesis Block", "0")
+    def create_genesis_block(genesis_public_key, genesis_private_key):
+        block = Block(date.datetime.now(), "Genesis Block", genesis_public_key, genesis_public_key)
+        block.index = 0
+        block.sign_block(genesis_private_key)
+        block.hash = block.calculate_hash()
+        return block
 
     def get_latest_block(self):
         return self.chain[-1]
 
-    def add_block(self, new_block):
+    def add_block(self, new_block, private_key):
+        new_block.index = self.get_latest_block().index + 1
         new_block.previous_hash = self.get_latest_block().hash
+        new_block.sign_block(private_key)
         new_block.hash = new_block.calculate_hash()
         self.chain.append(new_block)
 
@@ -33,6 +37,9 @@ class Blockchain:
         valid_public_keys = set()
         # add genesis public key
         valid_public_keys.add(self.chain[0].person_public_key)
+        # verify genesis block
+        if not self.is_genesis_block_valid():
+            return False
 
         for i in range(1, len(self.chain)):
             current_block = self.chain[i]
@@ -51,5 +58,19 @@ class Blockchain:
                 return False
 
             valid_public_keys.add(current_block.person_public_key)
+
+        return True
+
+    def is_genesis_block_valid(self):
+        genesis_block = self.chain[0]
+
+        if genesis_block.hash != genesis_block.calculate_hash():
+            return False
+
+        if not genesis_block.verify_signature():
+            return False
+
+        if genesis_block.person_public_key != genesis_block.validator_public_key:
+            return False
 
         return True
