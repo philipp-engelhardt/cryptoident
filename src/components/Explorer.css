@@ -1,16 +1,16 @@
 /* src/components/Dashboard.css */
-.dashboard-container {
+.explorer-container {
     display: flex;
     height: 100vh;
   }
   
-  .dashboard-content {
+  .explorer-content {
     flex-grow: 1;
     background-color: #2b2b2b;
     color: white;
   }
   
-  .dashboard-main {
+  .explorer-main {
     padding: 20px;
   }
   

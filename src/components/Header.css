@@ -31,7 +31,7 @@
     color: white;
     cursor: pointer;
     font-size: 1.5rem;
-    margin-right: 20px; /* Abstand zum rechten Rand */
+    margin-right: 10px; /* Abstand zum rechten Rand */
   }
   
   .logout-button:hover {

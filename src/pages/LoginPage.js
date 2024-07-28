@@ -12,7 +12,7 @@ const LoginPage = () => {
     // Dummy-Login: akzeptiert jeden Benutzernamen und jedes Passwort
     if (username && password) {
       localStorage.setItem('token', 'dummy-token');
-      navigate('/dashboard');
+      navigate('/explorer'); // Navigiere zur neuen Explorer-Seite
     } else {
       alert('Please enter a valid username and password');
     }

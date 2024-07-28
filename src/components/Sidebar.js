@@ -17,9 +17,9 @@ const Sidebar = () => {
       </button>
       <ul>
         <li>
-          <a href="/dashboard">
+          <a href="/explorer">
             <FontAwesomeIcon icon={faHome} />
-            {isOpen && <span>Dashboard</span>}
+            {isOpen && <span>Explorer</span>}
           </a>
         </li>
         <li>
