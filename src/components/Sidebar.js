@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUsers, faCog, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSearch, faCog, faBars } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -11,31 +12,31 @@ const Sidebar = () => {
   };
 
   return (
-    <nav className={`dashboard-sidebar ${isOpen ? 'open' : 'closed'}`}>
+    <div className={`dashboard-sidebar ${isOpen ? 'open' : 'closed'}`}>
       <button className="sidebar-toggle" onClick={toggleSidebar}>
         <FontAwesomeIcon icon={faBars} />
       </button>
       <ul>
         <li>
-          <a href="/explorer">
+          <Link to="/explorer">
             <FontAwesomeIcon icon={faHome} />
-            {isOpen && <span>Explorer</span>}
-          </a>
+            {isOpen && <span>Dashboard</span>}
+          </Link>
         </li>
         <li>
-          <a href="/dashboard/users">
-            <FontAwesomeIcon icon={faUsers} />
-            {isOpen && <span>Users</span>}
-          </a>
+          <Link to="/search">
+            <FontAwesomeIcon icon={faSearch} />
+            {isOpen && <span>Search</span>}
+          </Link>
         </li>
         <li className="settings">
-          <a href="/dashboard/settings">
+          <Link to="/settings">
             <FontAwesomeIcon icon={faCog} />
             {isOpen && <span>Settings</span>}
-          </a>
+          </Link>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 };
 

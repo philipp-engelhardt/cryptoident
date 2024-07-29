@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import Explorer from './components/Explorer';
+import Search from './components/Search';
 import './App.css';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/explorer/*" element={<Explorer />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

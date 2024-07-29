@@ -1,0 +1,65 @@
+/* src/components/Search.css */
+.search-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .search-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #333333;
+  }
+  
+  .search-main {
+    padding: 20px;
+  }
+  
+  .search-input-container {
+    width: 100%;
+    margin-top: 20px;
+    background-color: white;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 15px; /* Größere Polsterung */
+   
+  }
+  
+  .search-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+  }
+  
+  .search-container input {
+    width: calc(100% - 30px); /* Gleiche Breite wie die Tabelle, abzüglich Polsterung */
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  .search-result-item {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+.search-container input,
+.search-container select {
+  width: calc(100% - 40px); /* Größere Breite */
+  padding: 15px; /* Größere Polsterung */
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px; /* Abstand zwischen den Eingabefeldern */
+}
