@@ -15,7 +15,6 @@ const Explorer = () => {
     { hash: 'c8e9e4d2f2a5c7e8d6f4d2c8e5e3a9b4d6d3e1c4a5b6c7', blockheight: 854374, blocksize: '1,577,927', personID: 'ID004', privilegeLevel: 'User', timestamp: '28/07/2024 -<br> 21:27:49' },
     { hash: '8d3c4a5b6c7d8e9f2d3c4e5d6b4a3c2d1f4a5b6c7d8e9f0', blockheight: 854373, blocksize: '1,696,866', personID: 'ID005', privilegeLevel: 'Admin', timestamp: '28/07/2024 -<br> 21:03:44' },
     { hash: '9a2b3c4d5e6f7a8b9c0d1e2f3d4a5b6c7d8e9f0a1b2c3d4', blockheight: 854372, blocksize: '1,613,277', personID: 'ID006', privilegeLevel: 'User', timestamp: '28/07/2024 -<br> 21:01:32' },
-    { hash: 'd4c5e6f7a8b9c0d1e2f3d4a5b6c7d8e9f0a1b2c3d4e5f6g7', blockheight: 854371, blocksize: '1,626,688', personID: 'ID007', privilegeLevel: 'Admin', timestamp: '28/07/2024 -<br> 20:52:20' },
   ];
 
   const handleRowClick = (hash) => {

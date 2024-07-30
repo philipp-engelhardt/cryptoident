@@ -50,7 +50,7 @@
   
   .create-box {
     width: calc(33.3% - 10px); /* Breite für drei Boxen nebeneinander mit Abstand */
-    height: 200px;
+    height: 150px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -62,7 +62,7 @@
 
   .create-box-single {
     width: calc(33.3% - 10px); /* Breite für drei Boxen nebeneinander mit Abstand */
-    height: 200px;
+    height: 150px;
     background-color: #7e7e7e;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
