@@ -24,8 +24,13 @@
     display: flex;
     justify-content: center;
     border-radius: 10px;
+    transition: background-color 0.3s ease;
   }
-  
+
+  .dashboard-sidebar .sidebar-toggle:hover {
+    background-color: #8d8d8d; /* Ändern Sie diese Farbe nach Wunsch */
+  }
+
   .dashboard-sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -41,6 +46,13 @@
     display: flex;
     justify-content: flex-start; /* Beibehaltung der Ausrichtung im ausgeklappten Zustand */
     align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .dashboard-sidebar li a:hover {
+    transition: background-color 0.3s ease;
+    background-color: #555555; /* Ändern Sie diese Farbe nach Wunsch */
+    color: #ffffff; /* Ändern Sie die Textfarbe nach Wunsch */
   }
   
   .dashboard-sidebar.closed li {
@@ -81,7 +93,4 @@
     margin-left: 10px;
   }
   
-  .dashboard-sidebar a:hover {
-    text-decoration: underline;
-  }
   

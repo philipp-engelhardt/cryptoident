@@ -59,12 +59,37 @@
     justify-content: center;
     flex-direction: column; /* Damit der Text und der Button gestapelt werden */
   }
+
+  .create-box-single {
+    width: calc(33.3% - 10px); /* Breite für drei Boxen nebeneinander mit Abstand */
+    height: 200px;
+    background-color: #7e7e7e;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Damit der Text und der Button gestapelt werden */
+  }
   
   .create-box input[type="file"] {
     display: none; /* Versteckt den Standard-File-Input */
   }
   
   .create-box label {
+    padding: 10px 20px;
+    background-color: #333333; /* Standardfarbe für den Button */
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .create-box-single input[type="file"] {
+    display: none; /* Versteckt den Standard-File-Input */
+  }
+  
+  .create-box-single label {
     padding: 10px 20px;
     background-color: #333333; /* Standardfarbe für den Button */
     color: white;
@@ -81,4 +106,10 @@
     background-color: #555555; /* Hellere graue Farbe bei Hover */
   }
   
+  .create-box-single label.active {
+    background-color: #1cd81c; /* Hellgrün für den aktiven Zustand */
+  }
   
+  .create-box-single label:hover {
+    background-color: #555555; /* Hellere graue Farbe bei Hover */
+  }
