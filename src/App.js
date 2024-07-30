@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginPage from './pages/LoginPage';
 import Explorer from './components/Explorer';
 import Search from './components/Search';
+import Create from './components/Create';
 import './App.css';
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/explorer/*" element={<Explorer />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/create" element={<Create />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
