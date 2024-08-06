@@ -10,11 +10,12 @@ wallet = Wallet()
 wallet.generate_key_pair()
 
 blockchain = Blockchain()
-blockchain.create_genesis_block(wallet.public_key_pem, wallet.private_key_pem)
-block = Block(date.datetime.now(), ("56c9ac4d6090de", 1), "", wallet.public_key_pem)
-blockchain.add_block(block, wallet.private_key_pem)
+#blockchain.create_genesis_block(wallet.public_key_pem, wallet.private_key_pem)
+#block = Block(date.datetime.now(), ("56c9ac4d6090de", 1), "", wallet.public_key_pem)
+#blockchain.add_block(block, wallet.private_key_pem)
 
-blockchain.save_to_file()
+#blockchain.save_to_file()
+blockchain.load_from_file()
 
 first = Host(host_name='localhost', port=8001)
 
@@ -24,7 +25,7 @@ second = Host(host_name='localhost', port=8002)
 
 # Node 2
 node2 = Node(second, first)
-node2.get_blockchain()
+node2.get_current_blockchain()
 
 third = Host(host_name='localhost', port=8003)
 
