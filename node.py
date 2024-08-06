@@ -1,13 +1,22 @@
-import socket
 import threading
-import json
 import pickle
 import rpyc
 from rpyc import ThreadedServer
+from dataclasses import dataclass
+
+from blockchain import Blockchain
+
+
+@dataclass
+class Host:
+    host_name: str
+    port: int
 
 
 class NodeService(rpyc.Service):
-    known_peers = set()
+    def __init__(self, node):
+        self.node = node
+        self.known_peers = set()
 
     def on_connect(self, conn):
         print("Connected to", conn)
@@ -15,37 +24,49 @@ class NodeService(rpyc.Service):
     def on_disconnect(self, conn):
         print("Disconnected from", conn)
 
-    def exposed_get_data(self):
-        return "Hello from peer"
-
     def exposed_register_peer(self, host, port):
         self.known_peers.add((host, port))
+        self.node.connect_to_peer(host, port)
         return True
 
     def exposed_get_known_peers(self):
         return list(self.known_peers)
 
+    def exposed_get_blockchain(self):
+        with open('chain.pkl', 'rb') as file:
+            return pickle.load(file)
+
+    def exposed_broadcast_block(self, block):
+        self.node.handle_new_block(block)
+
 
 class Node:
-    def __init__(self, host, port):
-        self.host = host
-        self.port = port
+    def __init__(self, local_peer, initial_peer=None):
+        self.host = local_peer.host_name
+        self.port = local_peer.port
         self.peers = []
-        self.server = ThreadedServer(NodeService, port=self.port)
+        self.server = ThreadedServer(NodeService(self), port=self.port)
         self.server_thread = threading.Thread(target=self.server.start)
         self.server_thread.daemon = True
-
-    def start_server(self):
         self.server_thread.start()
+        if initial_peer is not None:
+            self.join_network(initial_peer)
+
+    def join_network(self, initial_peer):
+        conn = self.connect_to_peer(initial_peer.host_name, initial_peer.port)
+        known_peers = self.get_known_peers(conn)
+        self.connect_to_peers(known_peers)
+        self.register_all_peers()
 
     def connect_to_peer(self, host, port):
         conn = rpyc.connect(host, port)
         self.peers.append(conn)
         print(f'Connected to peer {host}:{port}')
+        return conn
 
     def connect_to_peers(self, peers):
         for peer in peers:
-            self.connect_to_peer(peer.host, peer.port)
+            self.connect_to_peer(peer[0], peer[1])
 
     def get_known_peers(self, conn):
         return conn.root.get_known_peers()
@@ -57,9 +78,35 @@ class Node:
             except:
                 self.peers.remove(peer)
 
-    def broadcast_blockchain(self, blockchain):
+    def get_blockchain(self):
+        chains = []
         for peer in self.peers:
             try:
-                peer.sendall(pickle.dumps(blockchain))
+                chains.append(peer.root.get_blockchain())
+            except:
+                self.peers.remove(peer)
+
+        longest_chain = Blockchain(chains[0])
+        for c in chains:
+            blockchain = Blockchain(c)
+            if blockchain.get_length() >= longest_chain.get_length() and blockchain.is_valid():
+                longest_chain = blockchain
+
+        longest_chain.save_to_file()
+
+    def handle_new_block(self, block):
+        blockchain = Blockchain()
+        blockchain.load_from_file()
+        blockchain.chain.append(block)
+
+        if not blockchain.is_valid():
+            self.get_blockchain()
+        else:
+            blockchain.save_to_file()
+
+    def broadcast_new_block(self, block):
+        for peer in self.peers:
+            try:
+                peer.root.broadcast_block(block)
             except:
                 self.peers.remove(peer)

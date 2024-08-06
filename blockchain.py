@@ -4,8 +4,8 @@ from block import Block
 
 
 class Blockchain:
-    def __init__(self, genesis_public_key, genesis_private_key):
-        self.chain = [self.create_genesis_block(genesis_public_key, genesis_private_key)]
+    def __init__(self, chain=None):
+        self.chain = chain
 
     def save_to_file(self):
         with open('chain.pkl', 'wb') as file:
@@ -15,16 +15,18 @@ class Blockchain:
         with open('chain.pkl', 'rb') as file:
             self.chain = pickle.load(file)
 
-    @staticmethod
-    def create_genesis_block(genesis_public_key, genesis_private_key):
+    def create_genesis_block(self, genesis_public_key, genesis_private_key):
         block = Block(date.datetime.now(), "Genesis Block", genesis_public_key, genesis_public_key)
         block.index = 0
         block.sign_block(genesis_private_key)
         block.hash = block.calculate_hash()
-        return block
+        self.chain = [block]
 
     def get_latest_block(self):
         return self.chain[-1]
+
+    def get_length(self):
+        return self.chain[-1].index
 
     def add_block(self, new_block, private_key):
         new_block.index = self.get_latest_block().index + 1

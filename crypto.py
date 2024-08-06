@@ -31,17 +31,17 @@ class Wallet:
         )
 
     def save_key_pair_to_file(self):
-        with open('private.key', 'wb') as file:
+        with open('private.pem', 'wb') as file:
             pickle.dump(self.private_key_pem, file)
 
-        with open('public.key', 'wb') as file:
+        with open('public.pem', 'wb') as file:
             pickle.dump(self.public_key_pem, file)
 
     def load_key_pair_from_file(self):
-        with open('private.key', 'rb') as file:
+        with open('private.pem', 'rb') as file:
             self.private_key_pem = pickle.load(file)
 
-        with open('public.key', 'rb') as file:
+        with open('public.pem', 'rb') as file:
             self.public_key_pem = pickle.load(file)
 
 

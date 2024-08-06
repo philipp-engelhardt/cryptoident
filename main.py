@@ -3,25 +3,33 @@ from block import Block
 from blockchain import Blockchain
 from crypto import Wallet
 from node import Node
+from node import Host
 
 
 wallet = Wallet()
 wallet.generate_key_pair()
 
-blockchain = Blockchain(wallet.public_key_pem, wallet.private_key_pem)
+blockchain = Blockchain()
+blockchain.create_genesis_block(wallet.public_key_pem, wallet.private_key_pem)
 block = Block(date.datetime.now(), ("56c9ac4d6090de", 1), "", wallet.public_key_pem)
 blockchain.add_block(block, wallet.private_key_pem)
 
-blockchain.is_valid()
+blockchain.save_to_file()
 
-#node1 = Node('localhost', 8776)
-#node1.start_server()
+first = Host(host_name='localhost', port=8001)
+
+node1 = Node(first)
+
+second = Host(host_name='localhost', port=8002)
 
 # Node 2
-#node2 = Node('localhost', 6778)
-#node2.start_server()
-#node2.connect_to_peer('localhost', 8776)
-#node2.register_all_peers()
+node2 = Node(second, first)
+node2.get_blockchain()
+
+third = Host(host_name='localhost', port=8003)
+
+# Node 2
+#node3 = Node(third, first)
 
 # Broadcast a transaction from node 2
 #transaction = {'from': 'Alice', 'to': 'Bob', 'amount': 10}
