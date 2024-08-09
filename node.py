@@ -1,11 +1,10 @@
 import threading
 import pickle
-from configparser import Error
-
 import rpyc
 from rpyc import ThreadedServer
 from dataclasses import dataclass
 from blockchain import Blockchain
+
 rpyc.core.protocol.DEFAULT_CONFIG['allow_pickle'] = True
 rpyc.core.protocol.DEFAULT_CONFIG['allow_public_attrs'] = True
 
@@ -48,7 +47,8 @@ class Node:
         self.host = local_peer.host_name
         self.port = local_peer.port
         self.peers = []
-        self.server = ThreadedServer(NodeService(self), port=self.port, protocol_config = rpyc.core.protocol.DEFAULT_CONFIG)
+        self.server = ThreadedServer(NodeService(self), port=self.port,
+                                     protocol_config=rpyc.core.protocol.DEFAULT_CONFIG)
         self.server_thread = threading.Thread(target=self.server.start)
         self.server_thread.daemon = True
         self.server_thread.start()
@@ -62,7 +62,7 @@ class Node:
         self.register_all_peers()
 
     def connect_to_peer(self, host, port):
-        conn = rpyc.connect(host, port, config = rpyc.core.protocol.DEFAULT_CONFIG)
+        conn = rpyc.connect(host, port, config=rpyc.core.protocol.DEFAULT_CONFIG)
         self.peers.append(conn)
         print(f'Connected to peer {host}:{port}')
         return conn
@@ -103,10 +103,9 @@ class Node:
         blockchain.chain.append(block)
 
         if not blockchain.is_valid():
-            self.get_blockchain()
+            self.get_current_blockchain()
         else:
             blockchain.save_to_file()
-
 
     def broadcast_new_block(self, block):
         for peer in self.peers:
