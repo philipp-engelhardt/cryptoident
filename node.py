@@ -39,7 +39,16 @@ class NodeService(rpyc.Service):
             return pickle.load(file)
 
     def exposed_broadcast_block(self, block):
-        self.node.handle_new_block(block)
+        blockchain = Blockchain()
+        blockchain.load_from_file()
+
+        if blockchain.chain is not None:
+            blockchain.chain.append(block)
+            if blockchain.is_valid():
+                blockchain.save_to_file()
+                return
+
+        self.node.get_current_blockchain()
 
 
 class Node:
@@ -98,19 +107,6 @@ class Node:
                 longest_chain = blockchain
 
         longest_chain.save_to_file()
-
-    def handle_new_block(self, block):
-        blockchain = Blockchain()
-        blockchain.load_from_file()
-
-        if blockchain.chain is not None:
-            blockchain.chain.append(block)
-            if blockchain.is_valid():
-                blockchain.save_to_file()
-                return
-
-        self.get_current_blockchain()
-
 
     def broadcast_new_block(self, block):
         for peer in self.peers:
