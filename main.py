@@ -18,26 +18,39 @@ blockchain.create_genesis_block(wallet.public_key_pem, wallet.private_key_pem)
 block = Block(date.datetime.now(), ("56c9ac4d6090de", 1), "", wallet.public_key_pem)
 blockchain.add_block(block, wallet.private_key_pem)
 
+block = Block(date.datetime.now(), ("56c9acak60sdkk", 5), "", wallet.public_key_pem)
+blockchain.add_block(block, wallet.private_key_pem)
+
+block = Block(date.datetime.now(), ("57c9acak60sdkk", 5), "", wallet.public_key_pem)
+blockchain.add_block(block, wallet.private_key_pem)
+
+block = Block(date.datetime.now(), ("54c9acak60sdkk", 10), "", wallet.public_key_pem)
+blockchain.add_block(block, wallet.private_key_pem)
+
+block = Block(date.datetime.now(), ("53c9acak60sdkk", 10), "", wallet.public_key_pem)
+blockchain.add_block(block, wallet.private_key_pem)
+
+blockchain.save_to_file()
+blockchain.is_valid()
+
 
 hostname = socket.gethostname()
 ip_address = socket.gethostbyname(hostname)
 print("IP Address:", ip_address)
 
-local = Host(host_name=ip_address, port=5000)
+local = Host(host_name='192.168.0.221', port=5000)
 
-if len(sys.argv) > 1:
-    start = Host(host_name=sys.argv[1], port=5000)
-    node = Node(local, start)
-else:
-    node = Node(local)
+#if len(sys.argv) > 1:
+#    start = Host(host_name=sys.argv[1], port=5000)
+#    node = Node(local, start)
+#else:
+#    node = Node(local)
 
 
-#node2.get_current_blockchain()
-
-#block = Block(date.datetime.now(), ("56c9ac4d6090de", 1), "", wallet.public_key_pem)
-#blockchain.add_block(block, wallet.private_key_pem)
-#blockchain.is_valid()
-#node2.broadcast_new_block(blockchain.get_latest_block())
+if len(sys.argv) > 2:
+    block = Block(date.datetime.now(), ("qeweqeqw", 1), "", wallet.public_key_pem)
+    blockchain.add_block(block, wallet.private_key_pem)
+    blockchain.is_valid()
 
 #third = Host(host_name='localhost', port=8003)
 
@@ -47,6 +60,8 @@ else:
 # Broadcast a transaction from node 2
 #transaction = {'from': 'Alice', 'to': 'Bob', 'amount': 10}
 #node2.broadcast_blockchain(blockchain.chain)
+
+#blockchain.load_from_file()
 
 # Print the contents of the blockchain
 for block in blockchain.chain:

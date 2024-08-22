@@ -78,7 +78,8 @@ class Node:
         for peer in self.peers:
             try:
                 peer.root.register_peer(self.host, self.port)
-            except:
+            except Exception as e:
+                print(e)
                 self.peers.remove(peer)
 
     def get_current_blockchain(self):
@@ -86,7 +87,8 @@ class Node:
         for peer in self.peers:
             try:
                 chains.append(peer.root.get_blockchain())
-            except:
+            except Exception as e:
+                print(e)
                 self.peers.remove(peer)
 
         longest_chain = Blockchain(chains[0])
@@ -100,16 +102,20 @@ class Node:
     def handle_new_block(self, block):
         blockchain = Blockchain()
         blockchain.load_from_file()
-        blockchain.chain.append(block)
 
-        if not blockchain.is_valid():
-            self.get_current_blockchain()
-        else:
-            blockchain.save_to_file()
+        if blockchain.chain is not None:
+            blockchain.chain.append(block)
+            if blockchain.is_valid():
+                blockchain.save_to_file()
+                return
+
+        self.get_current_blockchain()
+
 
     def broadcast_new_block(self, block):
         for peer in self.peers:
             try:
                 peer.root.broadcast_block(block)
-            except:
+            except Exception as e:
+                print(e)
                 self.peers.remove(peer)

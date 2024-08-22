@@ -62,7 +62,7 @@ def sign_message(private_key_pem, message):
     )
 
 
-def verify_signature(public_key_pem, signature, message):
+def verify_signature(public_key_pem, signature, message) -> bool:
     public_key = serialization.load_pem_public_key(
         public_key_pem,
         backend=default_backend()
