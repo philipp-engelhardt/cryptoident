@@ -31,9 +31,10 @@ const Explorer = () => {
     fetchBlocks();
   }, []);
 
-  const handleRowClick = (hash) => {
-    navigate(`/explorer/${hash}`);
-  };
+ const handleRowClick = (blockheight) => {
+  navigate(`/explorer/${blockheight}`);
+};
+
 
   return (
     <div className="explorer-container">
@@ -65,7 +66,7 @@ const Explorer = () => {
                           </tr>
                         ) : blocks.length > 0 ? (
                           blocks.map((block, index) => (
-                            <tr key={index} onClick={() => handleRowClick(block.hash)}>
+                            <tr key={index} onClick={() => handleRowClick(block.index)}>
                               <td>{block.hash}</td>
                               <td>{block.index}</td>
                               <td>{Array.isArray(block.data) ? block.data[0] : 'N/A'}</td>
