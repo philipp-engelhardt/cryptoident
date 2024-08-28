@@ -1,11 +1,32 @@
-from flask import Flask, jsonify, request
+import zipfile
+from io import BytesIO
+from flask import Flask, jsonify, request, send_file
+from crypto import Wallet
 from blockchain import Blockchain
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/generate_wallet', methods=['GET'])
 def generate_wallet():
-    return jsonify(), 200
+    wallet = Wallet()
+    wallet.generate_key_pair()
+    zip_buffer = BytesIO()
+
+    with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
+        zip_file.writestr('private.pem', wallet.private_key_pem)
+        zip_file.writestr('public.pem', wallet.public_key_pem)
+
+    zip_buffer.seek(0)
+
+    return send_file(
+        zip_buffer,
+        mimetype='application/zip',
+        as_attachment=True,
+        download_name='keys.zip'
+    ), 200
 
 
 @app.route('/block/<int:block_height>', methods=['GET'])
@@ -34,8 +55,9 @@ def create_new_block():
 
 @app.route('/search', methods=['GET'])
 def search_person():
-    query = request.args.get('q', '').lower()
-    return jsonify(query), 200
+    data = request.get_json()
+    person_id = data.get('person_id')
+    return jsonify(person_id), 200
 
 
 if __name__ == '__main__':
