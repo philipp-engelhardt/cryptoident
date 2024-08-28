@@ -57,7 +57,13 @@ def create_new_block():
 def search_person():
     data = request.get_json()
     person_id = data.get('person_id')
-    return jsonify(person_id), 200
+    blockchain = Blockchain()
+    blockchain.load_from_file()
+    for block in blockchain.chain:
+        block_data = block.data
+        if block_data[0] == person_id:
+            block_latest_data = block
+    return jsonify(block_latest_data.to_dict()), 200
 
 
 if __name__ == '__main__':
