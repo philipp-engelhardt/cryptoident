@@ -10,7 +10,10 @@ def generate_wallet():
 
 @app.route('/block/<int:block_height>', methods=['GET'])
 def get_block_details(block_height):
-    return jsonify(block_height), 200
+    blockchain = Blockchain()
+    blockchain.load_from_file()
+    block = blockchain.chain[block_height]
+    return jsonify(block.to_dict()), 200
 
 @app.route('/latest_blocks', methods=['GET'])
 def get_latest_blocks():
