@@ -1,9 +1,12 @@
 import zipfile
+import datetime as date
 from io import BytesIO
 from flask import Flask, jsonify, request, send_file
+from flask_cors import CORS
+
+from block import Block
 from crypto import Wallet
 from blockchain import Blockchain
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -49,11 +52,23 @@ def get_latest_blocks():
 
 @app.route('/create_new_block', methods=['POST'])
 def create_new_block():
-    new_item = request.json
-    return jsonify(new_item), 200
+    files = request.files
+    attribs = request.values
+    streams = {}
+
+    for key in files:
+        streams[key] = files[key].read()
+
+    blockchain = Blockchain()
+    blockchain.load_from_file()
+    block = Block(date.datetime.now(), (attribs['person_id'], attribs['privilege_level']), streams['person'], streams['public'])
+    blockchain.add_block(block, streams['private'])
+    blockchain.save_to_file()
+
+    return jsonify(blockchain.get_latest_block().to_dict()), 200
 
 
-@app.route('/search', methods=['GET'])
+@app.route('/search', methods=['POST'])
 def search_person():
     data = request.get_json()
     person_id = data.get('person_id')
@@ -63,8 +78,11 @@ def search_person():
         block_data = block.data
         if block_data[0] == person_id:
             block_latest_data = block
-    return jsonify(block_latest_data.to_dict()), 200
+    if block_latest_data is not None:
+        return jsonify(block_latest_data.to_dict()), 200
+    else:
+        return jsonify('Person not found!'), 402
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=6000)

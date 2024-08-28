@@ -22,7 +22,7 @@ class Blockchain:
         block.hash = block.calculate_hash()
         self.chain = [block]
 
-    def get_latest_block(self):
+    def get_latest_block(self) -> Block:
         return self.chain[-1]
 
     def get_length(self):
