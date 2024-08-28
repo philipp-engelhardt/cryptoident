@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-
+from blockchain import Blockchain
 app = Flask(__name__)
 
 
@@ -13,8 +13,14 @@ def get_block_details(block_height):
     return jsonify(block_height), 200
 
 @app.route('/latest_blocks', methods=['GET'])
-def get_latest_blocks(block_height):
-    return jsonify(block_height), 200
+def get_latest_blocks():
+    blockchain = Blockchain()
+    blockchain.load_from_file()
+    latest_blocks = blockchain.chain[-6:]
+    result = []
+    for block in latest_blocks:
+        result.append(block.to_dict())
+    return jsonify(result), 200
 
 
 @app.route('/create_new_block', methods=['POST'])

@@ -27,3 +27,11 @@ class Block:
         message = (f"{self.index}{self.previous_hash}{self.timestamp}{self.data}"
                    f"{self.person_public_key}{self.validator_public_key}").encode()
         return crypto.verify_signature(self.validator_public_key, self.signature, message)
+
+    def to_dict(self):
+        return {
+            "index": self.index,
+            "timestamp": self.timestamp,
+            "data": self.data,
+            "hash": self.hash
+        }
