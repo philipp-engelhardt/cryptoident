@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './Create.css';
+import CryptoJS from 'crypto-js'; // Importing crypto-js
 
 const Create = () => {
   const [name, setName] = useState('');
@@ -14,19 +15,49 @@ const Create = () => {
 
   const handleFileChange = (e, setFile) => {
     const file = e.target.files[0];
-    const validFormat = '.key';
+    const validFormat = '.pem';
 
     if (file && file.name.endsWith(validFormat)) {
       setFile(file);
     } else {
-      alert('Ungültiges Dateiformat. Bitte wählen Sie eine .key Datei.');
+      alert('Ungültiges Dateiformat. Bitte wählen Sie eine .pem Datei.');
       e.target.value = ''; // Reset the input if the file format is invalid
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Creating new entry:', { name, birthplace, birthday, privilegeLevel, file1, file2, file3 });
+
+    // Combine the input values and generate SHA-256 hash
+    const combinedString = `${name}${birthplace}${birthday}`;
+    const hash = CryptoJS.SHA256(combinedString).toString(CryptoJS.enc.Hex);
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('person_id', hash); // Adding the hash as person_id
+    formData.append('privilege_level', privilegeLevel);
+    if (file1) formData.append('person', file1);
+    if (file2) formData.append('public', file2);
+    if (file3) formData.append('private', file3);
+
+    try {
+      // Send FormData to the API endpoint
+      const response = await fetch('http://10.41.13.175:5000/create_new_block', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create entry');
+      }
+
+      const result = await response.json();
+      console.log('Entry created successfully:', result);
+      alert('Entry created successfully!');
+    } catch (error) {
+      console.error('Error creating entry:', error);
+      alert('Error creating entry. Please try again.');
+    }
   };
 
   return (
@@ -41,7 +72,7 @@ const Create = () => {
               <input
                 type="file"
                 id="file1"
-                accept=".key"
+                accept=".pem"
                 onChange={(e) => handleFileChange(e, setFile1)}
               />
               <label htmlFor="file1" className={file1 ? 'active' : ''}>
@@ -52,7 +83,7 @@ const Create = () => {
               <input
                 type="file"
                 id="file2"
-                accept=".key"
+                accept=".pem"
                 onChange={(e) => handleFileChange(e, setFile2)}
               />
               <label htmlFor="file2" className={file2 ? 'active' : ''}>
@@ -63,7 +94,7 @@ const Create = () => {
               <input
                 type="file"
                 id="file3"
-                accept=".key"
+                accept=".pem"
                 onChange={(e) => handleFileChange(e, setFile3)}
               />
               <label htmlFor="file3" className={file3 ? 'active' : ''}>
