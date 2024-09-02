@@ -9,6 +9,26 @@ from node import Node
 from node import Host
 import socket
 
+def create_blocks():
+    blockchain = Blockchain()
+    blockchain.create_genesis_block(wallet.public_key_pem, wallet.private_key_pem)
+    block = Block(date.datetime.now(), ("56c9ac4d6090de", 1), "", wallet.public_key_pem)
+    blockchain.add_block(block, wallet.private_key_pem)
+
+    block = Block(date.datetime.now(), ("56c9acak60sdkk", 5), "", wallet.public_key_pem)
+    blockchain.add_block(block, wallet.private_key_pem)
+
+    block = Block(date.datetime.now(), ("57c9acak60sdkk", 5), "", wallet.public_key_pem)
+    blockchain.add_block(block, wallet.private_key_pem)
+
+    block = Block(date.datetime.now(), ("54c9acak60sdkk", 10), "", wallet.public_key_pem)
+    blockchain.add_block(block, wallet.private_key_pem)
+
+    block = Block(date.datetime.now(), ("53c9acak60sdkk", 10), "", wallet.public_key_pem)
+    blockchain.add_block(block, wallet.private_key_pem)
+
+    blockchain.save_to_file()
+
 
 wallet = Wallet()
 wallet.generate_key_pair()
@@ -34,11 +54,11 @@ blockchain.save_to_file()
 blockchain.is_valid()
 
 
-hostname = socket.gethostname()
-ip_address = socket.gethostbyname(hostname)
-print("IP Address:", ip_address)
+#hostname = socket.gethostname()
+#ip_address = socket.gethostbyname(hostname)
+#print("IP Address:", ip_address)
 
-local = Host(host_name='192.168.0.221', port=5000)
+#local = Host(host_name='192.168.0.221', port=5000)
 
 #if len(sys.argv) > 1:
 #    start = Host(host_name=sys.argv[1], port=5000)
@@ -75,4 +95,4 @@ for block in blockchain.chain:
     print(f"hash: {block.hash}")
     print("\n")
 
-time.sleep(9999)  # Check every second
+#time.sleep(9999)  # Check every second
