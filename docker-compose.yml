@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  
+  react-app:
+    container_name: frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+  
+  python-app:
+    container_name: backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "6000:6000"

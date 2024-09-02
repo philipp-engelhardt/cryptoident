@@ -3,6 +3,7 @@ import datetime as date
 from io import BytesIO
 from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
+import main
 
 from block import Block
 from crypto import Wallet
@@ -85,4 +86,6 @@ def search_person():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=6000)
+    app.run(debug=False, host='0.0.0.0', port=6000)
+    main.create_blocks()
+    
