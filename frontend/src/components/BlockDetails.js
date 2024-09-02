@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './BlockDetails.css';
+import config from './config';
 
 const BlockDetails = () => {
   const { hash } = useParams();
@@ -9,8 +10,7 @@ const BlockDetails = () => {
   useEffect(() => {
     const fetchBlockDetails = async () => {
       try {
-        // Ersetzen der Dummy-Daten durch den API-Aufruf
-        const response = await fetch(`http://10.41.13.175:5000/block/${hash}`);
+        const response = await fetch(`${config.API_BASE_URL}/block/${hash}`);
         if (!response.ok) {
           throw new Error('Failed to fetch block details');
         }

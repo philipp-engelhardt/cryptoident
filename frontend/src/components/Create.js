@@ -3,6 +3,8 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import './Create.css';
 import CryptoJS from 'crypto-js'; // Importing crypto-js
+import config from './config';
+
 
 const Create = () => {
   const [name, setName] = useState('');
@@ -42,10 +44,11 @@ const Create = () => {
 
     try {
       // Send FormData to the API endpoint
-      const response = await fetch('http://10.41.13.175:5000/create_new_block', {
+      const response = await fetch(`${config.API_BASE_URL}/create_new_block`, {
         method: 'POST',
         body: formData,
-      });
+        });
+      
 
       if (!response.ok) {
         throw new Error('Failed to create entry');
