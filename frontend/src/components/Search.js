@@ -3,6 +3,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import './Search.css';
 import CryptoJS from 'crypto-js'; // Importing crypto-js
+import config from './config';
 
 const Search = () => {
   const [name, setName] = useState('');
@@ -21,7 +22,7 @@ const Search = () => {
   
     try {
       // Send the hash to the API route in the body as JSON
-      const response = await fetch('http://10.41.13.175:5000/search', {
+      const response = await fetch(`${config.API_BASE_URL}/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import BlockDetails from './BlockDetails';
 import './Explorer.css';
+import config from './config';
 
 const Explorer = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Explorer = () => {
   useEffect(() => {
     const fetchBlocks = async () => {
       try {
-        const response = await fetch('http://10.41.13.175:5000/latest_blocks');
+        const response = await fetch(`${config.API_BASE_URL}/latest_blocks`);
         if (!response.ok) {
           const errorText = await response.text();
           throw new Error(`Network response was not ok: ${response.statusText} - ${errorText}`);

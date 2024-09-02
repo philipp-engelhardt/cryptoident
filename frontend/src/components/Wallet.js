@@ -2,12 +2,13 @@ import React from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './Wallet.css';
+import config from './config';
 
 const Wallet = () => {
   // Funktion zum Herunterladen der Wallet-Zip-Datei
   const handleDownload = async () => {
     try {
-      const response = await fetch('http://10.41.13.175:5000/generate_wallet', {
+      const response = await fetch(`${config.API_BASE_URL}/generate_wallet`, {
         method: 'GET',
       });
 
