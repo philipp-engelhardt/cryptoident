@@ -1,0 +1,96 @@
+/* src/components/Sidebar.css */
+.dashboard-sidebar {
+    width: 200px;
+    background-color: #111111;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transition: width 0.3s ease;
+  }
+  
+  .dashboard-sidebar.closed {
+    width: 60px; /* Angepasst, um Platz für Icons zu schaffen */
+  }
+  
+  .dashboard-sidebar .sidebar-toggle {
+    background-color: #707070;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .dashboard-sidebar .sidebar-toggle:hover {
+    background-color: #8d8d8d; /* Ändern Sie diese Farbe nach Wunsch */
+  }
+
+  .dashboard-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    flex-grow: 1; /* Erlaubt dem ul-Element, den verfügbaren Platz einzunehmen */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dashboard-sidebar li {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #555;
+    display: flex;
+    justify-content: flex-start; /* Beibehaltung der Ausrichtung im ausgeklappten Zustand */
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .dashboard-sidebar li a:hover {
+    transition: background-color 0.3s ease;
+    background-color: #555555; /* Ändern Sie diese Farbe nach Wunsch */
+    color: #ffffff; /* Ändern Sie die Textfarbe nach Wunsch */
+  }
+  
+  .dashboard-sidebar.closed li {
+    justify-content: center; /* Zentrierung im eingeklappten Zustand */
+  }
+  
+  .dashboard-sidebar li.settings {
+    margin-top: auto; /* Verschiebt den Settings-Punkt nach unten */
+    margin-bottom: 0; /* Zusätzlicher Abstand nach unten entfernt */
+    padding-bottom: 0; /* Zusätzlicher Abstand nach unten entfernt */
+    border-top: 1px solid #555; /* Weißer Strich darüber */
+    border-bottom: none; /* Entfernen des unteren Strichs */
+  }
+  
+  .dashboard-sidebar li.dashboard,
+  .dashboard-sidebar li.users {
+    margin-bottom: 10px; /* Beibehaltung des Abstands für Dashboard und Users */
+  }
+  
+  .dashboard-sidebar li:last-child {
+    border-bottom: none;
+  }
+  
+  .dashboard-sidebar a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .dashboard-sidebar.closed a {
+    justify-content: center; /* Zentrierung im eingeklappten Zustand */
+  }
+  
+  .dashboard-sidebar a span {
+    margin-left: 10px;
+  }
+  
+  

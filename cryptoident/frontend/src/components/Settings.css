@@ -1,0 +1,15 @@
+.settings-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .settings-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #333333;
+  }
+  
+  .settings-main {
+    padding: 20px;
+  }

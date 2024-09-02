@@ -1,0 +1,40 @@
+/* src/components/Header.css */
+.dashboard-header {
+    background-color: #111111;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    position: relative;
+  }
+  
+  .logo-container {
+    position: absolute;
+    left: 47%;
+    transform: translateX(-50%);
+  }
+  
+  .left-spacer {
+    flex: 1;
+  }
+  
+  .header-logo {
+    max-height: 45px;
+    width: auto;
+  }
+  
+  .logout-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-right: 10px; /* Abstand zum rechten Rand */
+  }
+  
+  .logout-button:hover {
+    color: #e0e0e0;
+  }
+  

@@ -1,0 +1,92 @@
+/* src/components/Explorer.css */
+.explorer-container {
+  display: flex;
+  height: 100vh;
+}
+
+.explorer-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
+}
+
+.explorer-main {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
+}
+
+.explorer-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.explorer-table th,
+.explorer-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.explorer-table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+  color: #333;
+}
+
+.explorer-table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.explorer-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.explorer-table td {
+  color: #555;
+}
+
+.explorer-table td a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.explorer-table td a:hover {
+  text-decoration: underline;
+}
+
+.block-details-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.block-details-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.block-details-container p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.block-details-container p strong {
+  color: #333;
+}
