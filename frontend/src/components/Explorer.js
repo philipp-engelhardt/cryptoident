@@ -6,6 +6,12 @@ import BlockDetails from './BlockDetails';
 import './Explorer.css';
 import config from './config';
 
+
+const shortenHash = (hash) => {
+  if (!hash) return 'N/A';
+  return `${hash.slice(0, 6)}...${hash.slice(-8)}`;
+}
+
 const Explorer = () => {
   const navigate = useNavigate();
   const [blocks, setBlocks] = useState([]);
@@ -68,9 +74,9 @@ const Explorer = () => {
                         ) : blocks.length > 0 ? (
                           blocks.map((block, index) => (
                             <tr key={index} onClick={() => handleRowClick(block.index)}>
-                              <td>{block.hash}</td>
+                              <td>{shortenHash(block.hash)}</td>
                               <td>{block.index}</td>
-                              <td>{Array.isArray(block.data) ? block.data[0] : 'N/A'}</td>
+                              <td>{Array.isArray(block.data) ? shortenHash(block.data[0]) : 'N/A'}</td>
                               <td>{Array.isArray(block.data) ? block.data[1] : 'N/A'}</td>
                               <td>{new Date(block.timestamp).toLocaleString()}</td>
                             </tr>
