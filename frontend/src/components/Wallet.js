@@ -44,7 +44,7 @@ const Wallet = () => {
         <Header />
         <div className="wallet-main">
           <h2>Wallet</h2>
-          <div className="wallet-download-section">
+          <div className="wallet-download-box">
             <button className="download-button" onClick={handleDownload}>
               Download Wallet
             </button>
