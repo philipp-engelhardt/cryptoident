@@ -16,20 +16,20 @@
 
 .wallet-download-box {
   margin-top: 20px;
-  padding: 30px 40px; /* Erhöht die Höhe */
-  background-color: #8b4513; /* Lederähnliche Farbe */
+  padding: 30px 40px;
+  background-color: #8b4513;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   position: relative;
-  border: 2px solid #5c3a1e; /* Simuliert Nähte */
+  border: 2px solid #5c3a1e;
   overflow: hidden;
-  width: 60%; /* Reduziert die Breite */
-  max-width: 500px; /* Begrenzung der maximalen Breite */
-  min-height: 350px; /* Erhöht die minimale Höhe */
-  margin: 0 auto; /* Zentriert die Box horizontal */
+  width: 60%;
+  max-width: 500px;
+  min-height: 350px;
+  margin: 0 auto;
 }
 
 .wallet-download-box::before {
@@ -40,7 +40,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 20px;
-  background-color: #5c3a1e; /* Farbe der Lasche */
+  background-color: #5c3a1e;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border: 2px solid #5c3a1e;
@@ -62,7 +62,6 @@
     transparent 5px,
     transparent 10px
   );
-  /* Simuliert Nähte */
 }
 
 .download-button {

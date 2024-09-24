@@ -12,7 +12,6 @@ const Wallet = () => {
         method: 'GET',
       });
 
-      // Überprüfe, ob die Antwort erfolgreich war
       if (!response.ok) {
         throw new Error('Fehler beim Herunterladen der Wallet-ZIP-Datei.');
       }

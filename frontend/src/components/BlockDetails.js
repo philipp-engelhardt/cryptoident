@@ -16,7 +16,7 @@ const BlockDetails = () => {
         }
         const data = await response.json();
 
-        // Mapping der Werte wie in der Tabelle beschrieben
+        // Mapping der Werte wie in der Tabelle vorgegeben
         const mappedBlock = {
           hash: data.hash,
           blockheight: data.index,

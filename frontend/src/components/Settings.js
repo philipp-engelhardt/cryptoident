@@ -3,6 +3,8 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import './Settings.css';
 
+
+// Derzeit werden keine Settings benötitgt 
 const Settings = () => {
   return (
     <div className="settings-container">
