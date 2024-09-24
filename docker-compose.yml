@@ -12,5 +12,3 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "4000:4000"

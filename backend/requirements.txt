@@ -3,3 +3,6 @@ rpyc
 cryptography
 flask
 flask_cors
+kademlia
+Flask-Cors
+werkzeug
