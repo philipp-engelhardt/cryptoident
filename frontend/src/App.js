@@ -6,9 +6,12 @@ import Search from './components/Search';
 import Create from './components/Create';
 import Wallet from './components/Wallet';
 import Settings from './components/Settings';
+import config from './components/config.js';
 import './App.css';
 
 const App = () => {
+
+  config.initAPI();
 
   return (
     <Router>
