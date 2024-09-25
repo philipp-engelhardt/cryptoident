@@ -7,11 +7,8 @@ import Create from './components/Create';
 import Wallet from './components/Wallet';
 import Settings from './components/Settings';
 import './App.css';
-import config from './components/config.js';
 
 const App = () => {
-
-  config.initAPI()
 
   return (
     <Router>

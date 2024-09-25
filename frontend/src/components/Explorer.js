@@ -20,26 +20,30 @@ const Explorer = () => {
 
   useEffect(() => {
     const fetchBlocks = async () => {
+      let data = null;
+  
       try {
-        const response = await fetch(`${config.API_BASE_URL}/latest_blocks`);
+        const response = await fetch(`${config.API_BASE_URL}/latest_blocks`, {
+          method: 'GET',
+        });
         if (!response.ok) {
           const errorText = await response.text();
           throw new Error(`Network response was not ok: ${response.statusText} - ${errorText}`);
         }
-        const data = await response.json();
+        data = await response.json();
         console.log('Fetched data:', data);
         setBlocks(data.reverse()); // Umkehrung der Reihenfolge der Daten
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Error fetching data:', error.message, data);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchBlocks();
   }, []);
 
-  // Handling des Clicks aus ein Element der Tabelle
+  // Handling des Clicks auf ein Element der Tabelle
  const handleRowClick = (blockheight) => {
   navigate(`/explorer/${blockheight}`);
 };
