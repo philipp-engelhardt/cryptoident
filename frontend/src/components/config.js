@@ -1,5 +1,5 @@
-const config = {
-  API_BASE_URL: 'http://172.18.0.2:4000', // Standard Docker Container API
+let config = {
+  API_BASE_URL: 'http://172.19.0.6:4000', // Standard Docker Container API
   possibleAPIs: [], // Diese Liste wird dynamisch gefüllt
 };
 

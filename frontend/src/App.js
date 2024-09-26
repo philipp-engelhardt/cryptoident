@@ -11,7 +11,9 @@ import './App.css';
 
 const App = () => {
 
-  config.initAPI();
+  setTimeout(() => {
+    config.initAPI()
+  }, 5000);
 
   return (
     <Router>
@@ -22,7 +24,7 @@ const App = () => {
         <Route path="/create" element={<Create />} />
         <Route path="/wallet" element={<Wallet />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/explorer" />} />
       </Routes>
     </Router>
   );

@@ -99,6 +99,8 @@ def create_genesis_block():
 
     if blockchain.is_valid():
         blockchain.save_to_file()
+        # spread the new block on the network
+        node.broadcast_new_block(blockchain.get_latest_block())
         return jsonify(blockchain.get_latest_block().to_dict()), 200
     else:
         return jsonify('The blockchain is not valid!'), 400

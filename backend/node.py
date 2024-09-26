@@ -45,7 +45,7 @@ class NodeService(rpyc.Service):
         blockchain.load_from_file()
         self.node.logger.info(f'A new block has reached this node. Index: {block.index}')
         if blockchain.chain:
-            if blockchain.get_length() < block.index:
+            if blockchain.get_length() < (block.index + 1):
                 blockchain.chain.append(block)
                 if blockchain.is_valid():
                     blockchain.save_to_file()

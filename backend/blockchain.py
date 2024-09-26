@@ -41,6 +41,8 @@ class Blockchain:
         self.chain.append(new_block)
 
     def is_valid(self) -> bool:
+        if not self.chain:
+            return False
         valid_public_keys = set()
         # add genesis public key
         valid_public_keys.add(self.chain[0].person_public_key)

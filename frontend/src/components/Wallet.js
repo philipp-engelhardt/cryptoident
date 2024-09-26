@@ -8,7 +8,7 @@ const Wallet = () => {
   // Funktion zum Herunterladen der Wallet-Zip-Datei
   const handleDownload = async () => {
     try {
-      const response = await fetch(`${config.API_BASE_URL}/generate_wallet`, {
+      const response = await fetch(`${config.config.API_BASE_URL}/generate_wallet`, {
         method: 'GET',
       });
 

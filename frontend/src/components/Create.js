@@ -50,7 +50,7 @@ const Create = () => {
 
     try {
       // Objekt zum API-Endpoint schicken
-      const response = await fetch(`${config.API_BASE_URL}/create_new_block`, {
+      const response = await fetch(`${config.config.API_BASE_URL}/create_new_block`, {
         method: 'POST',
         body: formData,
       });

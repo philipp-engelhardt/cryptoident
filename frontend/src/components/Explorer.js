@@ -23,7 +23,7 @@ const Explorer = () => {
       let data = null;
   
       try {
-        const response = await fetch(`${config.API_BASE_URL}/latest_blocks`, {
+        const response = await fetch(`${config.config.API_BASE_URL}/latest_blocks`, {
           method: 'GET',
         });
         if (!response.ok) {

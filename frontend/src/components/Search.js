@@ -19,7 +19,7 @@ const Search = () => {
     const hash = CryptoJS.SHA256(combinedString).toString();
   
     try {
-      const response = await fetch(`${config.API_BASE_URL}/search`, {
+      const response = await fetch(`${config.config.API_BASE_URL}/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
