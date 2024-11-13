@@ -23,7 +23,7 @@
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    padding: 15px; /* Größere Polsterung */
+    padding: 15px;
   }
   
   .create-container h2 {
@@ -34,22 +34,22 @@
   
   .create-container input,
   .create-container select {
-    width: calc(100% - 40px); /* Größere Breite */
-    padding: 15px; /* Größere Polsterung */
+    width: calc(100% - 40px); 
+    padding: 15px;
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin-bottom: 20px; /* Abstand zwischen den Eingabefeldern */
+    margin-bottom: 20px;
   }
 
   .create-box-container {
     display: flex;
-    justify-content: space-between; /* Verteilt die Boxen gleichmäßig */
+    justify-content: space-between;
     margin-bottom: 20px;
   }
   
   .create-box {
-    width: calc(33.3% - 10px); /* Breite für drei Boxen nebeneinander mit Abstand */
+    width: calc(33.3% - 10px);
     height: 150px;
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -57,11 +57,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column; /* Damit der Text und der Button gestapelt werden */
+    flex-direction: column;
   }
 
   .create-box-single {
-    width: calc(33.3% - 10px); /* Breite für drei Boxen nebeneinander mit Abstand */
+    width: calc(33.3% - 10px);
     height: 150px;
     background-color: #7e7e7e;
     border-radius: 8px;
@@ -69,16 +69,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column; /* Damit der Text und der Button gestapelt werden */
+    flex-direction: column;
   }
   
   .create-box input[type="file"] {
-    display: none; /* Versteckt den Standard-File-Input */
+    display: none;
   }
   
   .create-box label {
     padding: 10px 20px;
-    background-color: #333333; /* Standardfarbe für den Button */
+    background-color: #333333;
     color: white;
     border-radius: 4px;
     cursor: pointer;
@@ -86,12 +86,12 @@
   }
 
   .create-box-single input[type="file"] {
-    display: none; /* Versteckt den Standard-File-Input */
+    display: none;
   }
   
   .create-box-single label {
     padding: 10px 20px;
-    background-color: #333333; /* Standardfarbe für den Button */
+    background-color: #333333;
     color: white;
     border-radius: 4px;
     cursor: pointer;
@@ -99,17 +99,17 @@
   }
   
   .create-box label.active {
-    background-color: #1cd81c; /* Hellgrün für den aktiven Zustand */
+    background-color: #1cd81c;
   }
   
   .create-box label:hover {
-    background-color: #555555; /* Hellere graue Farbe bei Hover */
+    background-color: #555555;
   }
   
   .create-box-single label.active {
-    background-color: #1cd81c; /* Hellgrün für den aktiven Zustand */
+    background-color: #1cd81c;
   }
   
   .create-box-single label:hover {
-    background-color: #555555; /* Hellere graue Farbe bei Hover */
+    background-color: #555555;
   }

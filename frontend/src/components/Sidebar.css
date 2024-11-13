@@ -10,7 +10,7 @@
   }
   
   .dashboard-sidebar.closed {
-    width: 60px; /* Angepasst, um Platz für Icons zu schaffen */
+    width: 60px;
   }
   
   .dashboard-sidebar .sidebar-toggle {
@@ -28,13 +28,13 @@
   }
 
   .dashboard-sidebar .sidebar-toggle:hover {
-    background-color: #8d8d8d; /* Ändern Sie diese Farbe nach Wunsch */
+    background-color: #8d8d8d;
   }
 
   .dashboard-sidebar ul {
     list-style-type: none;
     padding: 0;
-    flex-grow: 1; /* Erlaubt dem ul-Element, den verfügbaren Platz einzunehmen */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
@@ -44,32 +44,32 @@
     padding: 10px 0;
     border-bottom: 1px solid #555;
     display: flex;
-    justify-content: flex-start; /* Beibehaltung der Ausrichtung im ausgeklappten Zustand */
+    justify-content: flex-start;
     align-items: center;
     transition: background-color 0.3s ease;
   }
 
   .dashboard-sidebar li a:hover {
     transition: background-color 0.3s ease;
-    background-color: #555555; /* Ändern Sie diese Farbe nach Wunsch */
-    color: #ffffff; /* Ändern Sie die Textfarbe nach Wunsch */
+    background-color: #555555;
+    color: #ffffff;
   }
   
   .dashboard-sidebar.closed li {
-    justify-content: center; /* Zentrierung im eingeklappten Zustand */
+    justify-content: center;
   }
   
   .dashboard-sidebar li.settings {
-    margin-top: auto; /* Verschiebt den Settings-Punkt nach unten */
-    margin-bottom: 0; /* Zusätzlicher Abstand nach unten entfernt */
-    padding-bottom: 0; /* Zusätzlicher Abstand nach unten entfernt */
-    border-top: 1px solid #555; /* Weißer Strich darüber */
-    border-bottom: none; /* Entfernen des unteren Strichs */
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-top: 1px solid #555;
+    border-bottom: none;
   }
   
   .dashboard-sidebar li.dashboard,
   .dashboard-sidebar li.users {
-    margin-bottom: 10px; /* Beibehaltung des Abstands für Dashboard und Users */
+    margin-bottom: 10px;
   }
   
   .dashboard-sidebar li:last-child {
@@ -86,7 +86,7 @@
   }
   
   .dashboard-sidebar.closed a {
-    justify-content: center; /* Zentrierung im eingeklappten Zustand */
+    justify-content: center;
   }
   
   .dashboard-sidebar a span {

@@ -6,14 +6,19 @@ from block import Block
 class Blockchain:
     def __init__(self, chain=None):
         self.chain = chain
+        if chain is None:
+            self.chain = []
 
     def save_to_file(self):
         with open('chain.pkl', 'wb') as file:
             pickle.dump(self.chain, file)
 
     def load_from_file(self):
-        with open('chain.pkl', 'rb') as file:
-            self.chain = pickle.load(file)
+        try:
+            with open('chain.pkl', 'rb') as file:
+                self.chain = pickle.load(file)
+        except FileNotFoundError:
+            self.chain = []
 
     def create_genesis_block(self, genesis_public_key, genesis_private_key):
         block = Block(date.datetime.now(), "Genesis Block", genesis_public_key, genesis_public_key)
@@ -26,7 +31,7 @@ class Blockchain:
         return self.chain[-1]
 
     def get_length(self):
-        return self.chain[-1].index
+        return len(self.chain)
 
     def add_block(self, new_block, private_key):
         new_block.index = self.get_latest_block().index + 1
@@ -35,7 +40,9 @@ class Blockchain:
         new_block.hash = new_block.calculate_hash()
         self.chain.append(new_block)
 
-    def is_valid(self):
+    def is_valid(self) -> bool:
+        if not self.chain:
+            return False
         valid_public_keys = set()
         # add genesis public key
         valid_public_keys.add(self.chain[0].person_public_key)

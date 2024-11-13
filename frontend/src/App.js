@@ -6,9 +6,15 @@ import Search from './components/Search';
 import Create from './components/Create';
 import Wallet from './components/Wallet';
 import Settings from './components/Settings';
+import config from './components/config.js';
 import './App.css';
 
 const App = () => {
+
+  setTimeout(() => {
+    config.initAPI()
+  }, 5000);
+
   return (
     <Router>
       <Routes>
@@ -18,7 +24,7 @@ const App = () => {
         <Route path="/create" element={<Create />} />
         <Route path="/wallet" element={<Wallet />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/explorer" />} />
       </Routes>
     </Router>
   );

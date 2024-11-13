@@ -8,11 +8,10 @@ const Wallet = () => {
   // Funktion zum Herunterladen der Wallet-Zip-Datei
   const handleDownload = async () => {
     try {
-      const response = await fetch(`${config.API_BASE_URL}/generate_wallet`, {
+      const response = await fetch(`${config.config.API_BASE_URL}/generate_wallet`, {
         method: 'GET',
       });
 
-      // Überprüfe, ob die Antwort erfolgreich war
       if (!response.ok) {
         throw new Error('Fehler beim Herunterladen der Wallet-ZIP-Datei.');
       }
@@ -44,7 +43,7 @@ const Wallet = () => {
         <Header />
         <div className="wallet-main">
           <h2>Wallet</h2>
-          <div className="wallet-download-section">
+          <div className="wallet-download-box">
             <button className="download-button" onClick={handleDownload}>
               Download Wallet
             </button>

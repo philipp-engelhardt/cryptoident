@@ -10,13 +10,13 @@ const BlockDetails = () => {
   useEffect(() => {
     const fetchBlockDetails = async () => {
       try {
-        const response = await fetch(`${config.API_BASE_URL}/block/${hash}`);
+        const response = await fetch(`${config.config.API_BASE_URL}/block/${hash}`);
         if (!response.ok) {
           throw new Error('Failed to fetch block details');
         }
         const data = await response.json();
 
-        // Mapping der Werte wie in der Tabelle beschrieben
+        // Mapping der Werte wie in der Tabelle vorgegeben
         const mappedBlock = {
           hash: data.hash,
           blockheight: data.index,

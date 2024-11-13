@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './Create.css';
-import CryptoJS from 'crypto-js'; // Importing crypto-js
+import CryptoJS from 'crypto-js';
 import config from './config';
 
+const roles = [
+  { id: 1, label: 'Admin' },
+  { id: 2, label: 'Manager' },
+  { id: 3, label: 'User' },
+  { id: 4, label: 'Guest' },
+];
 
 const Create = () => {
   const [name, setName] = useState('');
   const [birthplace, setBirthplace] = useState('');
   const [birthday, setBirthday] = useState('');
-  const [privilegeLevel, setPrivilegeLevel] = useState('User');
+  const [privilegeLevel, setPrivilegeLevel] = useState(roles[2].id); // Default-Rolle ist bei der Erstellung "User"
   const [file1, setFile1] = useState(null);
   const [file2, setFile2] = useState(null);
   const [file3, setFile3] = useState(null);
@@ -23,32 +29,31 @@ const Create = () => {
       setFile(file);
     } else {
       alert('Ungültiges Dateiformat. Bitte wählen Sie eine .pem Datei.');
-      e.target.value = ''; // Reset the input if the file format is invalid
+      e.target.value = ''; // Input wird bei invalider Eingabe zurückgesetzt
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Combine the input values and generate SHA-256 hash
+    // Kombinierung der Eingabe + Erstellung des SHA-256 Hash
     const combinedString = `${name}${birthplace}${birthday}`;
     const hash = CryptoJS.SHA256(combinedString).toString(CryptoJS.enc.Hex);
 
-    // Create a FormData object
+    // neues Objekt aus Eingabe
     const formData = new FormData();
-    formData.append('person_id', hash); // Adding the hash as person_id
-    formData.append('privilege_level', privilegeLevel);
+    formData.append('person_id', hash); 
+    formData.append('privilege_level', privilegeLevel); 
     if (file1) formData.append('person', file1);
     if (file2) formData.append('public', file2);
     if (file3) formData.append('private', file3);
 
     try {
-      // Send FormData to the API endpoint
-      const response = await fetch(`${config.API_BASE_URL}/create_new_block`, {
+      // Objekt zum API-Endpoint schicken
+      const response = await fetch(`${config.config.API_BASE_URL}/create_new_block`, {
         method: 'POST',
         body: formData,
-        });
-      
+      });
 
       if (!response.ok) {
         throw new Error('Failed to create entry');
@@ -125,10 +130,13 @@ const Create = () => {
             />
             <select
               value={privilegeLevel}
-              onChange={(e) => setPrivilegeLevel(e.target.value)}
+              onChange={(e) => setPrivilegeLevel(parseInt(e.target.value))}
             >
-              <option value="User">User</option>
-              <option value="Admin">Admin</option>
+              {roles.map((role) => (
+                <option key={role.id} value={role.id}>
+                  {role.label}
+                </option>
+              ))}
             </select>
             <button type="submit">Create</button>
           </form>

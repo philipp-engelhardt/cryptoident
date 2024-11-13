@@ -1,35 +1,83 @@
 .wallet-container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .wallet-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: #333333;
-  }
-  
-  .wallet-main {
-    padding: 20px;
-  }
-  
-  .wallet-download-section {
-    margin-top: 20px;
-  }
-  
-  .download-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .download-button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  height: 100vh;
+}
+
+.wallet-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
+}
+
+.wallet-main {
+  padding: 20px;
+}
+
+.wallet-download-box {
+  margin-top: 20px;
+  padding: 30px 40px;
+  background-color: #8b4513;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  border: 2px solid #5c3a1e;
+  overflow: hidden;
+  width: 60%;
+  max-width: 500px;
+  min-height: 350px;
+  margin: 0 auto;
+}
+
+.wallet-download-box::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background-color: #5c3a1e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2px solid #5c3a1e;
+  border-top: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.wallet-download-box::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #d2b48c,
+    #d2b48c 5px,
+    transparent 5px,
+    transparent 10px
+  );
+}
+
+.download-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #707070;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.4);
+}
+
+.download-button:hover {
+  background-color: #8d8d8d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+}

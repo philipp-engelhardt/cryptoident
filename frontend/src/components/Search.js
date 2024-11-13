@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './Search.css';
-import CryptoJS from 'crypto-js'; // Importing crypto-js
+import CryptoJS from 'crypto-js'; 
 import config from './config';
 
 const Search = () => {
@@ -12,22 +12,19 @@ const Search = () => {
   const [results, setResults] = useState([]);
 
   const handleSearch = async () => {
-    // Combine the input values
+    // Kombinierung der Eingaben
     const combinedString = `${name}${birthplace}${birthday}`;
   
-    // Generate SHA-256 hash
+    // Generierung des SHA-256 Hash
     const hash = CryptoJS.SHA256(combinedString).toString();
   
-    console.log('Hash:', hash); // Log the hash value
-  
     try {
-      // Send the hash to the API route in the body as JSON
-      const response = await fetch(`${config.API_BASE_URL}/search`, {
+      const response = await fetch(`${config.config.API_BASE_URL}/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ person_id: hash }), // Passing the hash in the body
+        body: JSON.stringify({ person_id: hash }), // Hash wird im Body an die API übertragen
       });
   
       if (!response.ok) {
@@ -36,10 +33,7 @@ const Search = () => {
   
       const data = await response.json();
   
-      // Log the entire response JSON to the console
-      console.log('Response JSON:', data);
-  
-      // Map the response directly since the structure is different
+      // Mapping der Antwort auf gewünschtes Schema
       const mappedResult = {
         hash: data.hash,
         blockheight: data.index,
@@ -47,13 +41,10 @@ const Search = () => {
         privilegeLevel: Array.isArray(data.data) ? data.data[1] : 'N/A',
         timestamp: new Date(data.timestamp).toLocaleString(),
       };
-  
-      // Set the single mapped result as an array to match the component's structure
-      setResults([mappedResult]);
+        setResults([mappedResult]);
   
     } catch (error) {
       console.error('Error during API call:', error);
-      // Optionally, set an error message state to inform the user
     }
   };
   

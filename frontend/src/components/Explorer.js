@@ -6,6 +6,13 @@ import BlockDetails from './BlockDetails';
 import './Explorer.css';
 import config from './config';
 
+
+// Kürzung des Hash für Darstellungszwecke 
+const shortenHash = (hash) => {
+  if (!hash) return 'N/A';
+  return `${hash.slice(0, 6)}...${hash.slice(-8)}`;
+}
+
 const Explorer = () => {
   const navigate = useNavigate();
   const [blocks, setBlocks] = useState([]);
@@ -13,25 +20,30 @@ const Explorer = () => {
 
   useEffect(() => {
     const fetchBlocks = async () => {
+      let data = null;
+  
       try {
-        const response = await fetch(`${config.API_BASE_URL}/latest_blocks`);
+        const response = await fetch(`${config.config.API_BASE_URL}/latest_blocks`, {
+          method: 'GET',
+        });
         if (!response.ok) {
           const errorText = await response.text();
           throw new Error(`Network response was not ok: ${response.statusText} - ${errorText}`);
         }
-        const data = await response.json();
+        data = await response.json();
         console.log('Fetched data:', data);
         setBlocks(data.reverse()); // Umkehrung der Reihenfolge der Daten
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Error fetching data:', error.message, data);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchBlocks();
   }, []);
 
+  // Handling des Clicks auf ein Element der Tabelle
  const handleRowClick = (blockheight) => {
   navigate(`/explorer/${blockheight}`);
 };
@@ -68,9 +80,9 @@ const Explorer = () => {
                         ) : blocks.length > 0 ? (
                           blocks.map((block, index) => (
                             <tr key={index} onClick={() => handleRowClick(block.index)}>
-                              <td>{block.hash}</td>
+                              <td>{shortenHash(block.hash)}</td>
                               <td>{block.index}</td>
-                              <td>{Array.isArray(block.data) ? block.data[0] : 'N/A'}</td>
+                              <td>{Array.isArray(block.data) ? shortenHash(block.data[0]) : 'N/A'}</td>
                               <td>{Array.isArray(block.data) ? block.data[1] : 'N/A'}</td>
                               <td>{new Date(block.timestamp).toLocaleString()}</td>
                             </tr>

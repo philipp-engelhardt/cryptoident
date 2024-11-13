@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Entfernen Sie das Token oder andere Authentifizierungsdaten
+    // Entfernen des Token oder andere Authentifizierungsdaten für Logout
     localStorage.removeItem('token');
     navigate('/login');
   };
