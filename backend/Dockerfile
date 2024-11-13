@@ -11,4 +11,4 @@ EXPOSE 5000
 EXPOSE 4000
 EXPOSE 5500
 
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["python", "service.py"]
